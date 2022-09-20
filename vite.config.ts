@@ -38,16 +38,16 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
 			port: viteEnv.VITE_PORT,
 			open: viteEnv.VITE_OPEN,
 			cors: true,
-			hmr: { overlay: false },
+			hmr: { overlay: false }
 			// https: false,
 			// 代理跨域（mock 不需要配置，这里只是个事列）
-			proxy: {
-				"/api": {
-					target: "https://mock.mengxuegu.com/mock/62abda3212c1416424630a45", // easymock
-					changeOrigin: true,
-					rewrite: path => path.replace(/^\/api/, "")
-				}
-			}
+			// proxy: {
+			// 	"/api": {
+			// 		target: "http://localhost:8089", // 本地node服务
+			// 		changeOrigin: true,
+			// 		rewrite: path => path.replace(/^\/api/, "")
+			// 	}
+			// }
 		},
 		// plugins
 		plugins: [

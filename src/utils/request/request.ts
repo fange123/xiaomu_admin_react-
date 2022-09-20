@@ -15,12 +15,12 @@ const configState = {
 	// 默认地址请求地址，可在 .env 开头文件中修改
 	baseURL: import.meta.env.VITE_API_URL as string,
 	// 设置超时时间（10s）
-	timeout: 10000,
+	timeout: 10000
 	// 跨域时候允许携带凭证
-	withCredentials: true
+	// withCredentials: true
 };
 //* 请求白名单：不需要添加token
-const whiteList = ["/hooks/login"];
+const whiteList = ["/api/user/login"];
 const axiosCanceler = new AxiosCanceler();
 
 const request = axios.create(configState);
@@ -42,7 +42,7 @@ request.interceptors.request.use(
 			return config;
 		}
 
-		return { ...config, headers: { ...config.headers, "x-access-token": token } };
+		return { ...config, headers: { ...config.headers, Authorization: `Bearer ${token}` } };
 	},
 	(error: AxiosError) => {
 		return Promise.reject(error);

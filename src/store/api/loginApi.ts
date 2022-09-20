@@ -4,13 +4,13 @@ import axiosBaseQuery from "@/utils/request/request";
 export const loginApi = createApi({
 	reducerPath: "loginApi",
 	baseQuery: axiosBaseQuery({
-		baseUrl: "/hooks/"
+		baseUrl: "/api/"
 	}),
 	endpoints: build => {
 		return {
 			login: build.mutation({
 				query: data => ({
-					url: "login",
+					url: "user/login",
 					method: "POST",
 					data
 				})
@@ -26,7 +26,14 @@ export const loginApi = createApi({
 
 			getAuthorButtons: build.query({
 				query: () => ({
-					url: "auth/buttons",
+					url: "user/buttons",
+					method: "GET"
+				})
+			}),
+
+			getUserInfo: build.query({
+				query: () => ({
+					url: "user/info",
 					method: "GET"
 				})
 			})
@@ -34,4 +41,4 @@ export const loginApi = createApi({
 	}
 });
 
-export const { useLoginMutation, useGetMenuListQuery, useGetAuthorButtonsQuery } = loginApi;
+export const { useLoginMutation, useGetMenuListQuery, useGetAuthorButtonsQuery, useGetUserInfoQuery } = loginApi;
